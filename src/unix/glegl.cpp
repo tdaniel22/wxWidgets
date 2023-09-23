@@ -666,6 +666,9 @@ bool wxGLCanvasEGL::SwapBuffers()
             wxLogTrace(TRACE_EGL, "Not drawing hidden window");
             return false;
         }
+
+        // Dirty fix for https://github.com/wxWidgets/wxWidgets/issues/23512
+        eglSwapInterval(m_display, 0);
     }
 #endif // GDK_WINDOWING_X11
 #ifdef GDK_WINDOWING_WAYLAND
